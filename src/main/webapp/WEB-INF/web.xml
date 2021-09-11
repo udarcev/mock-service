@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <display-name>${project.description}</display-name>
+    <context-param>
+        <param-name>log4jConfiguration</param-name>
+        <param-value>file://${catalina.base}/conf/service-mock/log4j2.xml</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>mock-servlet</servlet-name>
+        <servlet-class>ru.demo.servicemock.MockHttpServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mock-servlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>mock-rest</servlet-name>
+        <servlet-class>ru.demo.servicemock.MockRestServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mock-rest</servlet-name>
+        <url-pattern>/rest</url-pattern>
+    </servlet-mapping>
+</web-app>

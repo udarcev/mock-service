@@ -1,0 +1,8 @@
+general:
+    - request: /opt/tomcat/conf/service-mock/request1.xml
+      response: /opt/tomcat/conf/service-mock/response1.xml
+      status: 200
+      callback:
+          endpoint: http://localhost:8080/address
+          body: /opt/tomcat/conf/service-mock/callback1.xml
+          delay_millis: 1000

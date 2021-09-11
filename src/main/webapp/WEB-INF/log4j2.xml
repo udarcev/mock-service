@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration>
+    <Properties>
+        <Property name="pattern">[%thread] %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %c{1} - %msg%n</Property>
+        <Property name="folder">/opt/tomcat/logs/service-mock</Property>
+        <Property name="filename">service-mock</Property>
+    </Properties>
+    <Appenders>
+        <RollingFile name="File" fileName="${folder}/${filename}.log" filePattern="${folder}/$${date:yyyy-MM}/${filename}-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout pattern="${pattern}" />
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="2GB" />
+            </Policies>
+        </RollingFile>
+        <RollingFile name="FileErrors" fileName="${folder}/${filename}_error.log" filePattern="${folder}/$${date:yyyy-MM}/${filename}_error-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout pattern="${pattern}" />
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="2GB" />
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="warn">
+            <AppenderRef ref="FileErrors" />
+        </Root>
+        <Logger name="ru.demo" level="trace" additivity="false">
+            <AppenderRef ref="File" />
+            <AppenderRef ref="FileErrors" level="warn" />
+        </Logger>
+    </Loggers>
+</Configuration>
